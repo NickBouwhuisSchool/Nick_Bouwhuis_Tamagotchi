@@ -4,10 +4,28 @@
   <Platform>Windows</Platform>
   <Config />
   <SourceFiles>
+    <File>C:/Users/nickb/source/repos/Nick_Bouwhuis_Tamagotchi/Nick_Bouwhuis_Tamagotchi/Content/angry.png</File>
+    <File>C:/Users/nickb/source/repos/Nick_Bouwhuis_Tamagotchi/Nick_Bouwhuis_Tamagotchi/Content/dead.png</File>
+    <File>C:/Users/nickb/source/repos/Nick_Bouwhuis_Tamagotchi/Nick_Bouwhuis_Tamagotchi/Content/Exciting.png</File>
     <File>C:/Users/nickb/source/repos/Nick_Bouwhuis_Tamagotchi/Nick_Bouwhuis_Tamagotchi/Content/File.spritefont</File>
+    <File>C:/Users/nickb/source/repos/Nick_Bouwhuis_Tamagotchi/Nick_Bouwhuis_Tamagotchi/Content/happy.png</File>
+    <File>C:/Users/nickb/source/repos/Nick_Bouwhuis_Tamagotchi/Nick_Bouwhuis_Tamagotchi/Content/Hungry.png</File>
+    <File>C:/Users/nickb/source/repos/Nick_Bouwhuis_Tamagotchi/Nick_Bouwhuis_Tamagotchi/Content/LittleSick.png</File>
+    <File>C:/Users/nickb/source/repos/Nick_Bouwhuis_Tamagotchi/Nick_Bouwhuis_Tamagotchi/Content/sad.png</File>
+    <File>C:/Users/nickb/source/repos/Nick_Bouwhuis_Tamagotchi/Nick_Bouwhuis_Tamagotchi/Content/sleeping.png</File>
     <File>C:/Users/nickb/source/repos/Nick_Bouwhuis_Tamagotchi/Nick_Bouwhuis_Tamagotchi/Content/tamagotchi.png</File>
+    <File>C:/Users/nickb/source/repos/Nick_Bouwhuis_Tamagotchi/Nick_Bouwhuis_Tamagotchi/Content/VerySick.png</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
   </DestFiles>

@@ -5,6 +5,7 @@ using System;
 
 namespace Nick_Bouwhuis_Tamagotchi
 {
+    //middle size of tamagotchi, 256x 248
     public class Game1 : Game
     {
         private GraphicsDeviceManager _graphics;
