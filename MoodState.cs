@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
+using Microsoft.Xna.Framework.Graphics;
 
-class MoodStateBase
+public class MoodStateBase
 {
-
+    protected Texture2D Texture { get; set; }
     public virtual void Load(ContentManager content)
     {
 
@@ -15,9 +16,9 @@ class MoodStateBase
     {
 
     }
-    public virtual void Draw(GameTime pGameTime)
+    public virtual void Draw(GameTime pGameTime, SpriteBatch batch)
     {
-
+        batch.Draw(Texture, new Vector2(128, 120), Color.White);
     }
 
 }

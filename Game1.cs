@@ -12,6 +12,7 @@ namespace Nick_Bouwhuis_Tamagotchi
         private SpriteBatch _spriteBatch;
         private Texture2D tamTexture;
         private SpriteFont creditFont;
+        private CharacterStateManager stateManager = new CharacterStateManager();
 
         public Game1()
         {
@@ -26,7 +27,7 @@ namespace Nick_Bouwhuis_Tamagotchi
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-
+            stateManager.Initialize();
             
 
 
@@ -45,6 +46,8 @@ namespace Nick_Bouwhuis_Tamagotchi
             tamTexture = Content.Load<Texture2D>("tamagotchi");
             creditFont = Content.Load<SpriteFont>("File");
 
+            stateManager.Load(Content);
+
             // TODO: use this.Content to load your game content here
         }
 
@@ -52,7 +55,7 @@ namespace Nick_Bouwhuis_Tamagotchi
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
-
+            stateManager.Update(gameTime);
             // TODO: Add your update logic here
 
             base.Update(gameTime);
@@ -65,6 +68,8 @@ namespace Nick_Bouwhuis_Tamagotchi
             // TODO: Add your drawing code here
 
             _spriteBatch.Begin();
+
+            stateManager.Draw(gameTime, _spriteBatch);
 
             _spriteBatch.Draw(tamTexture, Vector2.Zero, Color.White);
             _spriteBatch.DrawString(creditFont, "Icon made by Webalys,\n https://www.flaticon.com/authors/webalys", Vector2.Zero, Color.White);
