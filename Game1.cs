@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
+using DiscoFramework;
 
 namespace Nick_Bouwhuis_Tamagotchi
 {
@@ -13,6 +14,9 @@ namespace Nick_Bouwhuis_Tamagotchi
         private Texture2D tamTexture;
         private SpriteFont creditFont;
         private CharacterStateManager stateManager = new CharacterStateManager();
+
+        private Button leftButton;
+        private Button rightButton;
 
         public Game1()
         {
@@ -46,6 +50,24 @@ namespace Nick_Bouwhuis_Tamagotchi
             tamTexture = Content.Load<Texture2D>("tamagotchi");
             creditFont = Content.Load<SpriteFont>("File");
 
+            leftButton = new Button()
+            {
+                Active = true,
+                Position = new Vector2(188, 428),
+                Texture = Content.Load<Texture2D>("ButtonColor")
+            };
+
+            leftButton.OnClick += (sender, args) => test();
+
+            rightButton = new Button()
+            {
+                Active = true,
+                Position = new Vector2(324, 428),
+                Texture = Content.Load<Texture2D>("ButtonColor")
+            };
+
+            rightButton.OnClick += (sender, args) => test();
+
             stateManager.Load(Content);
 
             // TODO: use this.Content to load your game content here
@@ -58,6 +80,9 @@ namespace Nick_Bouwhuis_Tamagotchi
             stateManager.Update(gameTime);
             // TODO: Add your update logic here
 
+            leftButton.Update(gameTime);
+            rightButton.Update(gameTime);
+
             base.Update(gameTime);
         }
 
@@ -68,7 +93,8 @@ namespace Nick_Bouwhuis_Tamagotchi
             // TODO: Add your drawing code here
 
             _spriteBatch.Begin();
-
+            leftButton.DrawButton(_spriteBatch);
+            rightButton.DrawButton(_spriteBatch);
             stateManager.Draw(gameTime, _spriteBatch);
 
             _spriteBatch.Draw(tamTexture, Vector2.Zero, Color.White);
@@ -80,6 +106,11 @@ namespace Nick_Bouwhuis_Tamagotchi
 
 
             base.Draw(gameTime);
+        }
+
+        private void test()
+        {
+            Console.WriteLine("test");
         }
     }
 }

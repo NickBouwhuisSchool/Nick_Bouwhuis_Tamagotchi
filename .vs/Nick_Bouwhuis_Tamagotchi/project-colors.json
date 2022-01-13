@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "ec25e43f-b1dc-4d0b-a9f2-98180665bdef": {
+      "ProjectGuid": "ec25e43f-b1dc-4d0b-a9f2-98180665bdef",
+      "DisplayName": "Nick_Bouwhuis_Tamagotchi",
+      "ColorIndex": 0
+    }
+  },
+  "NextColorIndex": 1
+}
