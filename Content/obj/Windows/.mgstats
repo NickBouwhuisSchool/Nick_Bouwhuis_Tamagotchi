@@ -1,10 +1,11 @@
 Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Size,Build Seconds
 "C:/Users/nickb/source/repos/Nick_Bouwhuis_Tamagotchi/Content/angry.png","C:/Users/nickb/source/repos/Nick_Bouwhuis_Tamagotchi/Content/bin/Windows/angry.xnb","TextureProcessor","Texture2DContent",2209,254037,0.8228691
-"C:/Users/nickb/source/repos/Nick_Bouwhuis_Tamagotchi/Content/ButtonColor.png","C:/Users/nickb/source/repos/Nick_Bouwhuis_Tamagotchi/Content/bin/Windows/ButtonColor.xnb","TextureProcessor","Texture2DContent",142,6485,0.3530095
+"C:/Users/nickb/source/repos/Nick_Bouwhuis_Tamagotchi/Content/blink.png","C:/Users/nickb/source/repos/Nick_Bouwhuis_Tamagotchi/Content/bin/Windows/blink.xnb","TextureProcessor","Texture2DContent",2365,254037,0.3985252
+"C:/Users/nickb/source/repos/Nick_Bouwhuis_Tamagotchi/Content/ButtonColor.png","C:/Users/nickb/source/repos/Nick_Bouwhuis_Tamagotchi/Content/bin/Windows/ButtonColor.xnb","TextureProcessor","Texture2DContent",142,6485,0.0074249
 "C:/Users/nickb/source/repos/Nick_Bouwhuis_Tamagotchi/Content/dead.png","C:/Users/nickb/source/repos/Nick_Bouwhuis_Tamagotchi/Content/bin/Windows/dead.xnb","TextureProcessor","Texture2DContent",2339,254037,0.0288805
 "C:/Users/nickb/source/repos/Nick_Bouwhuis_Tamagotchi/Content/Exciting.png","C:/Users/nickb/source/repos/Nick_Bouwhuis_Tamagotchi/Content/bin/Windows/Exciting.xnb","TextureProcessor","Texture2DContent",2613,254037,0.0320752
 "C:/Users/nickb/source/repos/Nick_Bouwhuis_Tamagotchi/Content/File.spritefont","C:/Users/nickb/source/repos/Nick_Bouwhuis_Tamagotchi/Content/bin/Windows/File.xnb","FontDescriptionProcessor","SpriteFontContent",2008,37922,0.4361577
-"C:/Users/nickb/source/repos/Nick_Bouwhuis_Tamagotchi/Content/happy.png","C:/Users/nickb/source/repos/Nick_Bouwhuis_Tamagotchi/Content/bin/Windows/happy.xnb","TextureProcessor","Texture2DContent",2421,254037,0.0296589
+"C:/Users/nickb/source/repos/Nick_Bouwhuis_Tamagotchi/Content/happy.png","C:/Users/nickb/source/repos/Nick_Bouwhuis_Tamagotchi/Content/bin/Windows/happy.xnb","TextureProcessor","Texture2DContent",2393,254037,0.0229989
 "C:/Users/nickb/source/repos/Nick_Bouwhuis_Tamagotchi/Content/Hungry.png","C:/Users/nickb/source/repos/Nick_Bouwhuis_Tamagotchi/Content/bin/Windows/Hungry.xnb","TextureProcessor","Texture2DContent",2491,254037,0.0275767
 "C:/Users/nickb/source/repos/Nick_Bouwhuis_Tamagotchi/Content/LittleSick.png","C:/Users/nickb/source/repos/Nick_Bouwhuis_Tamagotchi/Content/bin/Windows/LittleSick.xnb","TextureProcessor","Texture2DContent",2287,254037,0.0332331
 "C:/Users/nickb/source/repos/Nick_Bouwhuis_Tamagotchi/Content/sad.png","C:/Users/nickb/source/repos/Nick_Bouwhuis_Tamagotchi/Content/bin/Windows/sad.xnb","TextureProcessor","Texture2DContent",2395,254037,0.0303553

@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework;
 using MoodStates;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Content;
+using System.Timers;
 
 namespace Nick_Bouwhuis_Tamagotchi
 {
@@ -12,6 +13,7 @@ namespace Nick_Bouwhuis_Tamagotchi
     {
         private MoodStateBase currentState;
         private Angry angry = new Angry();
+        private Blink blink = new Blink();
         private Dead dead = new Dead();
         private Excited excited = new Excited();
         private Happy happy = new Happy();
@@ -23,9 +25,16 @@ namespace Nick_Bouwhuis_Tamagotchi
 
         private ContentManager _content;
 
+        private Random rand = new Random();
+        private Timer t = new Timer();
+        private SpriteFont font;
+
+        public int Attention { get; set; }
+        public int Hunger { get; set; }
+
         public void Initialize()
         {
-            currentState = verySick;
+            currentState = happy;
         }
         public void Load(ContentManager content)
         {
@@ -35,6 +44,8 @@ namespace Nick_Bouwhuis_Tamagotchi
         public void Update(GameTime pGameTime)
         {
             currentState.Update(pGameTime);
+            Blink();
+
         }
         public void Draw(GameTime pGameTime, SpriteBatch batch)
         {
@@ -46,6 +57,10 @@ namespace Nick_Bouwhuis_Tamagotchi
             {
                 case "Angry":
                     currentState = angry;
+                    Load(_content);
+                    break;
+                case "Blink":
+                    currentState = blink;
                     Load(_content);
                     break;
                 case "Dead":
@@ -82,5 +97,26 @@ namespace Nick_Bouwhuis_Tamagotchi
                     break;
             }
         }
+
+        public void Blink()
+        {
+            if (currentState == happy)
+            {
+                int randomInterval = rand.Next(100);
+                if (randomInterval > 97)
+                {
+                    currentState = blink;
+                    Load(_content);
+                    t.Interval = 500;
+                    t.Enabled = true;
+                    t.Elapsed += new ElapsedEventHandler(StopBlink);
+                }
+            }
+        }
+        public void StopBlink(object source, ElapsedEventArgs e)
+        {
+            currentState = happy;
+        }
+
     }
 }

@@ -57,7 +57,7 @@ namespace Nick_Bouwhuis_Tamagotchi
                 Texture = Content.Load<Texture2D>("ButtonColor")
             };
 
-            leftButton.OnClick += (sender, args) => test();
+            leftButton.OnClick += (sender, args) => LeftButtonPressed();
 
             rightButton = new Button()
             {
@@ -69,7 +69,8 @@ namespace Nick_Bouwhuis_Tamagotchi
             rightButton.OnClick += (sender, args) => test();
 
             stateManager.Load(Content);
-
+            stateManager.Attention = 50;
+            stateManager.Hunger = 80;
             // TODO: use this.Content to load your game content here
         }
 
@@ -98,8 +99,9 @@ namespace Nick_Bouwhuis_Tamagotchi
             stateManager.Draw(gameTime, _spriteBatch);
 
             _spriteBatch.Draw(tamTexture, Vector2.Zero, Color.White);
-            _spriteBatch.DrawString(creditFont, "Icon made by Webalys,\n https://www.flaticon.com/authors/webalys", Vector2.Zero, Color.White);
-
+            //_spriteBatch.DrawString(creditFont, "Icon made by Webalys,\n https://www.flaticon.com/authors/webalys", Vector2.Zero, Color.White);
+            _spriteBatch.DrawString(creditFont, stateManager.Attention.ToString(), Vector2.Zero, Color.White);
+            _spriteBatch.DrawString(creditFont, stateManager.Hunger.ToString(), new Vector2(480, 0), Color.White);
 
 
             _spriteBatch.End();
@@ -107,10 +109,14 @@ namespace Nick_Bouwhuis_Tamagotchi
 
             base.Draw(gameTime);
         }
-
+        private void LeftButtonPressed()
+        {
+            if(stateManager.Attention < 100)
+            stateManager.Attention += 10;
+        }
         private void test()
         {
-            Console.WriteLine("test");
+            
         }
     }
 }

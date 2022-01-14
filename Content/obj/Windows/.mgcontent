@@ -5,6 +5,7 @@
   <Config />
   <SourceFiles>
     <File>C:/Users/nickb/source/repos/Nick_Bouwhuis_Tamagotchi/Content/angry.png</File>
+    <File>C:/Users/nickb/source/repos/Nick_Bouwhuis_Tamagotchi/Content/blink.png</File>
     <File>C:/Users/nickb/source/repos/Nick_Bouwhuis_Tamagotchi/Content/ButtonColor.png</File>
     <File>C:/Users/nickb/source/repos/Nick_Bouwhuis_Tamagotchi/Content/dead.png</File>
     <File>C:/Users/nickb/source/repos/Nick_Bouwhuis_Tamagotchi/Content/Exciting.png</File>
@@ -18,6 +19,7 @@
     <File>C:/Users/nickb/source/repos/Nick_Bouwhuis_Tamagotchi/Content/VerySick.png</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
