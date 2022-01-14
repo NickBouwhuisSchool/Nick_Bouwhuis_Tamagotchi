@@ -115,13 +115,13 @@ namespace Nick_Bouwhuis_Tamagotchi
         private void LeftButtonPressed()
         {
             stateManager.ButtonInput = true;
-
+            stateManager.Input("Left");
 
         }
         private void RightButtonPressed()
         {
             stateManager.ButtonInput = true;
-
+            stateManager.Input("Right");
 
         }
         private void test()

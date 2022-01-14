@@ -12,6 +12,7 @@ namespace Nick_Bouwhuis_Tamagotchi
     class CharacterStateManager
     {
         private MoodStateBase currentState;
+        private MoodStateBase stateAfterSleep;
         private Angry angry = new Angry();
         private Blink blink = new Blink();
         private Dead dead = new Dead();
@@ -37,7 +38,8 @@ namespace Nick_Bouwhuis_Tamagotchi
 
         public void Initialize()
         {
-            currentState = angry;
+            currentState = happy;
+            stateAfterSleep = happy;
         }
         public void Load(ContentManager content)
         {
@@ -47,11 +49,12 @@ namespace Nick_Bouwhuis_Tamagotchi
         public void Update(GameTime pGameTime)
         {
             currentState.Update(pGameTime);
+
             if (currentState == happy)
                 Blink();
             if (ButtonInput)
                 Input("");
-            Console.WriteLine(currentState.ToString());
+            Console.WriteLine(stateAfterSleep.ToString());
 
 
         }
@@ -126,8 +129,12 @@ namespace Nick_Bouwhuis_Tamagotchi
 
         public void Input(string buttonPressed)
         {
-            Console.WriteLine(currentState.ToString());
             ButtonInput = false;
+            if(currentState == sleeping)
+            {
+                AttentionState();
+                currentState = stateAfterSleep;
+            }
             inputTimer.Stop();
             inputTimer.Interval = 20000;
             inputTimer.Elapsed += new ElapsedEventHandler(Sleep);
@@ -149,8 +156,11 @@ namespace Nick_Bouwhuis_Tamagotchi
         }
         private void Sleep(Object o, ElapsedEventArgs e)
         {
-            ChangeState("Sleeping");
             t.Stop();
+            t.Dispose();
+            ChangeState("Happy");
+            ChangeState("Sleeping");
+
         }
 
         public void DecreaseTimer()
@@ -164,7 +174,46 @@ namespace Nick_Bouwhuis_Tamagotchi
         {
             Hunger -= 1;
             Attention -= 2;
-            
+            AttentionState();
+        }
+        private void AttentionState()
+        {
+            if (currentState == sleeping)
+            {
+                if (Attention > 50)
+                {
+                    stateAfterSleep = happy;
+                    happy.Load(_content);
+                }
+                else if (Attention < 40 && Attention > 20)
+                {
+                    stateAfterSleep = sad;
+                    sad.Load(_content);
+                }
+                else if (Attention < 20)
+                {
+                    stateAfterSleep = angry;
+                    angry.Load(_content);
+                }
+            }
+            else
+            {
+                if (Attention > 50)
+                {
+                    currentState = happy;
+                    Load(_content);
+                }
+                else if (Attention < 40 && Attention > 20)
+                {
+                    currentState = sad;
+                    Load(_content);
+                }
+                else if (Attention < 20)
+                {
+                    currentState = angry;
+                    Load(_content);
+                }
+            }
         }
         
     }
