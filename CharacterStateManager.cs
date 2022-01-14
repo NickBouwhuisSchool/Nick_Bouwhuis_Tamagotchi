@@ -28,9 +28,11 @@ namespace Nick_Bouwhuis_Tamagotchi
         private Random rand = new Random();
         private Timer t = new Timer();
         private SpriteFont font;
+        private Timer inputTimer = new Timer();
 
         public int Attention { get; set; }
         public int Hunger { get; set; }
+        public bool ButtonInput { get; set; }
 
         public void Initialize()
         {
@@ -45,6 +47,9 @@ namespace Nick_Bouwhuis_Tamagotchi
         {
             currentState.Update(pGameTime);
             Blink();
+            if (ButtonInput)
+                Input();
+            Console.WriteLine(currentState.ToString());
 
         }
         public void Draw(GameTime pGameTime, SpriteBatch batch)
@@ -118,5 +123,20 @@ namespace Nick_Bouwhuis_Tamagotchi
             currentState = happy;
         }
 
+        public void Input()
+        {
+            Console.WriteLine(currentState.ToString());
+            ButtonInput = false;
+            ChangeState("Happy");
+            inputTimer.Stop();
+            inputTimer.Interval = 20000;
+            inputTimer.Elapsed += new ElapsedEventHandler(Sleep);
+            inputTimer.Enabled = true;
+        }
+        private void Sleep(Object o, ElapsedEventArgs e)
+        {
+            ChangeState("Sleeping");
+            t.Stop();
+        }
     }
 }

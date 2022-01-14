@@ -66,7 +66,7 @@ namespace Nick_Bouwhuis_Tamagotchi
                 Texture = Content.Load<Texture2D>("ButtonColor")
             };
 
-            rightButton.OnClick += (sender, args) => test();
+            rightButton.OnClick += (sender, args) => RightButtonPressed();
 
             stateManager.Load(Content);
             stateManager.Attention = 50;
@@ -111,8 +111,17 @@ namespace Nick_Bouwhuis_Tamagotchi
         }
         private void LeftButtonPressed()
         {
+            stateManager.ButtonInput = true;
+
             if(stateManager.Attention < 100)
             stateManager.Attention += 10;
+        }
+        private void RightButtonPressed()
+        {
+            stateManager.ButtonInput = true;
+
+            if (stateManager.Hunger < 100)
+                stateManager.Hunger += 10;
         }
         private void test()
         {
