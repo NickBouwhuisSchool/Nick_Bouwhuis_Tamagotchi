@@ -71,6 +71,9 @@ namespace Nick_Bouwhuis_Tamagotchi
             stateManager.Load(Content);
             stateManager.Attention = 50;
             stateManager.Hunger = 80;
+
+            stateManager.DecreaseTimer();
+            stateManager.Input("");
             // TODO: use this.Content to load your game content here
         }
 
@@ -113,15 +116,13 @@ namespace Nick_Bouwhuis_Tamagotchi
         {
             stateManager.ButtonInput = true;
 
-            if(stateManager.Attention < 100)
-            stateManager.Attention += 10;
+
         }
         private void RightButtonPressed()
         {
             stateManager.ButtonInput = true;
 
-            if (stateManager.Hunger < 100)
-                stateManager.Hunger += 10;
+
         }
         private void test()
         {

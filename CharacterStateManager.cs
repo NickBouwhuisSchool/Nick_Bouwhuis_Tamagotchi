@@ -29,6 +29,7 @@ namespace Nick_Bouwhuis_Tamagotchi
         private Timer t = new Timer();
         private SpriteFont font;
         private Timer inputTimer = new Timer();
+        Timer timer = new Timer();
 
         public int Attention { get; set; }
         public int Hunger { get; set; }
@@ -36,7 +37,7 @@ namespace Nick_Bouwhuis_Tamagotchi
 
         public void Initialize()
         {
-            currentState = happy;
+            currentState = angry;
         }
         public void Load(ContentManager content)
         {
@@ -46,10 +47,12 @@ namespace Nick_Bouwhuis_Tamagotchi
         public void Update(GameTime pGameTime)
         {
             currentState.Update(pGameTime);
-            Blink();
+            if (currentState == happy)
+                Blink();
             if (ButtonInput)
-                Input();
+                Input("");
             Console.WriteLine(currentState.ToString());
+
 
         }
         public void Draw(GameTime pGameTime, SpriteBatch batch)
@@ -105,8 +108,7 @@ namespace Nick_Bouwhuis_Tamagotchi
 
         public void Blink()
         {
-            if (currentState == happy)
-            {
+
                 int randomInterval = rand.Next(100);
                 if (randomInterval > 97)
                 {
@@ -116,27 +118,54 @@ namespace Nick_Bouwhuis_Tamagotchi
                     t.Enabled = true;
                     t.Elapsed += new ElapsedEventHandler(StopBlink);
                 }
-            }
         }
         public void StopBlink(object source, ElapsedEventArgs e)
         {
             currentState = happy;
         }
 
-        public void Input()
+        public void Input(string buttonPressed)
         {
             Console.WriteLine(currentState.ToString());
             ButtonInput = false;
-            ChangeState("Happy");
             inputTimer.Stop();
             inputTimer.Interval = 20000;
             inputTimer.Elapsed += new ElapsedEventHandler(Sleep);
             inputTimer.Enabled = true;
+            if(buttonPressed == "Left")
+            {
+                if (Attention < 100)
+                    Attention += 10;
+            }
+            else if(buttonPressed == "Right")
+            {
+                if (Hunger < 100 && currentState == angry)
+                {
+
+                }
+                else
+                    Hunger += 10;
+            }
         }
         private void Sleep(Object o, ElapsedEventArgs e)
         {
             ChangeState("Sleeping");
             t.Stop();
         }
+
+        public void DecreaseTimer()
+        {
+            timer.Stop();
+            timer.Interval = 5000;
+            timer.Elapsed += new ElapsedEventHandler(DecreaseTimerElapsed);
+            timer.Enabled = true;
+        }
+        private void DecreaseTimerElapsed(object o, ElapsedEventArgs e)
+        {
+            Hunger -= 1;
+            Attention -= 2;
+            
+        }
+        
     }
 }
