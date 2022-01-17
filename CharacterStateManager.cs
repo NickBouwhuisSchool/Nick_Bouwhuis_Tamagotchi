@@ -35,6 +35,7 @@ namespace Nick_Bouwhuis_Tamagotchi
         public int Attention { get; set; }
         public int Hunger { get; set; }
         public bool ButtonInput { get; set; }
+        public bool Dead { get; set; }
 
         public void Initialize()
         {
@@ -132,7 +133,12 @@ namespace Nick_Bouwhuis_Tamagotchi
             ButtonInput = false;
             if(currentState == sleeping)
             {
-                AttentionState();
+                if (Hunger < 50)
+                {
+                    HungerState();
+                }
+                else
+                    AttentionState();
                 currentState = stateAfterSleep;
             }
             inputTimer.Stop();
@@ -172,8 +178,13 @@ namespace Nick_Bouwhuis_Tamagotchi
         }
         private void DecreaseTimerElapsed(object o, ElapsedEventArgs e)
         {
-            Hunger -= 1;
+            Hunger -= 0;
             Attention -= 2;
+            if(Hunger < 50)
+            {
+                HungerState();
+            }
+            else
             AttentionState();
         }
         private void AttentionState()
@@ -200,21 +211,38 @@ namespace Nick_Bouwhuis_Tamagotchi
             {
                 if (Attention > 50)
                 {
-                    currentState = happy;
-                    Load(_content);
+                    ChangeState("Happy");
                 }
                 else if (Attention < 40 && Attention > 20)
                 {
-                    currentState = sad;
-                    Load(_content);
+                    ChangeState("Sad");
                 }
                 else if (Attention < 20)
                 {
-                    currentState = angry;
-                    Load(_content);
+                    ChangeState("Angry");
                 }
             }
         }
-        
+        private void HungerState()
+        {
+            if (Hunger < 50 && Hunger >= 40)
+            {
+                ChangeState("Hungry");
+            }
+            else if(Hunger < 40 && Hunger >= 30)
+            {
+                ChangeState("LittleSick");
+            }
+            else if(Hunger < 30)
+            {
+                ChangeState("VerySick");
+            }
+        }
+        private void Died()
+        {
+            currentState = dead;
+            Load(_content);
+            Dead = true;
+        }
     }
 }

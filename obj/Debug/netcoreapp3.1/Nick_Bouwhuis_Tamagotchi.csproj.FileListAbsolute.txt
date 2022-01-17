@@ -85,3 +85,14 @@ C:\Users\nickb\source\repos\Nick_Bouwhuis_Tamagotchi\obj\Debug\netcoreapp3.1\Nic
 C:\Users\nickb\source\repos\Nick_Bouwhuis_Tamagotchi\obj\Debug\netcoreapp3.1\Nick_Bouwhuis_Tamagotchi.dll
 C:\Users\nickb\source\repos\Nick_Bouwhuis_Tamagotchi\obj\Debug\netcoreapp3.1\Nick_Bouwhuis_Tamagotchi.pdb
 C:\Users\nickb\source\repos\Nick_Bouwhuis_Tamagotchi\obj\Debug\netcoreapp3.1\Nick_Bouwhuis_Tamagotchi.genruntimeconfig.cache
+C:\Users\nickb\source\repos\Nick_Bouwhuis_Tamagotchi\Nick_Bouwhuis_Tamagotchi\bin\Debug\netcoreapp3.1\Content\angry.xnb
+C:\Users\nickb\source\repos\Nick_Bouwhuis_Tamagotchi\Nick_Bouwhuis_Tamagotchi\bin\Debug\netcoreapp3.1\Content\blink.xnb
+C:\Users\nickb\source\repos\Nick_Bouwhuis_Tamagotchi\Nick_Bouwhuis_Tamagotchi\bin\Debug\netcoreapp3.1\Content\ButtonColor.xnb
+C:\Users\nickb\source\repos\Nick_Bouwhuis_Tamagotchi\Nick_Bouwhuis_Tamagotchi\bin\Debug\netcoreapp3.1\Content\dead.xnb
+C:\Users\nickb\source\repos\Nick_Bouwhuis_Tamagotchi\Nick_Bouwhuis_Tamagotchi\bin\Debug\netcoreapp3.1\Content\Exciting.xnb
+C:\Users\nickb\source\repos\Nick_Bouwhuis_Tamagotchi\Nick_Bouwhuis_Tamagotchi\bin\Debug\netcoreapp3.1\Content\happy.xnb
+C:\Users\nickb\source\repos\Nick_Bouwhuis_Tamagotchi\Nick_Bouwhuis_Tamagotchi\bin\Debug\netcoreapp3.1\Content\Hungry.xnb
+C:\Users\nickb\source\repos\Nick_Bouwhuis_Tamagotchi\Nick_Bouwhuis_Tamagotchi\bin\Debug\netcoreapp3.1\Content\LittleSick.xnb
+C:\Users\nickb\source\repos\Nick_Bouwhuis_Tamagotchi\Nick_Bouwhuis_Tamagotchi\bin\Debug\netcoreapp3.1\Content\sad.xnb
+C:\Users\nickb\source\repos\Nick_Bouwhuis_Tamagotchi\Nick_Bouwhuis_Tamagotchi\bin\Debug\netcoreapp3.1\Content\sleeping.xnb
+C:\Users\nickb\source\repos\Nick_Bouwhuis_Tamagotchi\Nick_Bouwhuis_Tamagotchi\bin\Debug\netcoreapp3.1\Content\VerySick.xnb
