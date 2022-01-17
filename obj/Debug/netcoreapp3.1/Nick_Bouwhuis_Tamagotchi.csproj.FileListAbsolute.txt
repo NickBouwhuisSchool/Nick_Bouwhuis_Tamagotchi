@@ -96,3 +96,5 @@ C:\Users\nickb\source\repos\Nick_Bouwhuis_Tamagotchi\Nick_Bouwhuis_Tamagotchi\bi
 C:\Users\nickb\source\repos\Nick_Bouwhuis_Tamagotchi\Nick_Bouwhuis_Tamagotchi\bin\Debug\netcoreapp3.1\Content\sad.xnb
 C:\Users\nickb\source\repos\Nick_Bouwhuis_Tamagotchi\Nick_Bouwhuis_Tamagotchi\bin\Debug\netcoreapp3.1\Content\sleeping.xnb
 C:\Users\nickb\source\repos\Nick_Bouwhuis_Tamagotchi\Nick_Bouwhuis_Tamagotchi\bin\Debug\netcoreapp3.1\Content\VerySick.xnb
+C:\Users\nickb\source\repos\Nick_Bouwhuis_Tamagotchi\bin\Debug\netcoreapp3.1\Content\blink.xnb
+C:\Users\nickb\source\repos\Nick_Bouwhuis_Tamagotchi\bin\Debug\netcoreapp3.1\Content\ButtonColor.xnb

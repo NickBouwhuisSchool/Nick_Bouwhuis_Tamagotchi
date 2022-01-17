@@ -44,8 +44,17 @@ namespace Nick_Bouwhuis_Tamagotchi
         }
         public void Load(ContentManager content)
         {
-            currentState.Load(content);
             _content = content;
+            angry.Load(content);
+            blink.Load(content);
+            dead.Load(content);
+            excited.Load(content);
+            happy.Load(content);
+            hungry.Load(content);
+            littleSick.Load(content);
+            sad.Load(content);
+            sleeping.Load(content);
+            verySick.Load(content);
         }
         public void Update(GameTime pGameTime)
         {
@@ -69,59 +78,50 @@ namespace Nick_Bouwhuis_Tamagotchi
             {
                 case "Angry":
                     currentState = angry;
-                    Load(_content);
                     break;
                 case "Blink":
                     currentState = blink;
-                    Load(_content);
                     break;
                 case "Dead":
                     currentState = dead;
-                    Load(_content);
                     break;
                 case "Excited":
                     currentState = excited;
-                    Load(_content);
                     break;
                 case "Happy":
                     currentState = happy;
-                    Load(_content);
                     break;
                 case "Hungry":
                     currentState = hungry;
-                    Load(_content);
                     break;
                 case "LittleSick":
                     currentState = littleSick;
-                    Load(_content);
                     break;
                 case "Sad":
                     currentState = sad;
-                    Load(_content);
                     break;
                 case "Sleeping":
                     currentState = sleeping;
-                    Load(_content);
                     break;
                 case "VerySick":
                     currentState = verySick;
-                    Load(_content);
                     break;
             }
         }
 
         public void Blink()
         {
-
+            if (!Dead)
+            {
                 int randomInterval = rand.Next(100);
                 if (randomInterval > 97)
                 {
                     currentState = blink;
-                    Load(_content);
                     t.Interval = 500;
                     t.Enabled = true;
                     t.Elapsed += new ElapsedEventHandler(StopBlink);
                 }
+            }
         }
         public void StopBlink(object source, ElapsedEventArgs e)
         {
@@ -162,11 +162,13 @@ namespace Nick_Bouwhuis_Tamagotchi
         }
         private void Sleep(Object o, ElapsedEventArgs e)
         {
-            t.Stop();
-            t.Dispose();
-            ChangeState("Happy");
-            ChangeState("Sleeping");
-
+            if (!Dead)
+            {
+                t.Stop();
+                t.Dispose();
+                ChangeState("Happy");
+                ChangeState("Sleeping");
+            }
         }
 
         public void DecreaseTimer()
@@ -178,8 +180,8 @@ namespace Nick_Bouwhuis_Tamagotchi
         }
         private void DecreaseTimerElapsed(object o, ElapsedEventArgs e)
         {
-            Hunger -= 0;
-            Attention -= 2;
+            Hunger -= 5;
+            Attention -= 0;
             if(Hunger < 50)
             {
                 HungerState();
@@ -233,15 +235,18 @@ namespace Nick_Bouwhuis_Tamagotchi
             {
                 ChangeState("LittleSick");
             }
-            else if(Hunger < 30)
+            else if(Hunger < 30 && Hunger >= 6)
             {
                 ChangeState("VerySick");
+            }
+            else if(Hunger <= 5)
+            {
+                Died();
             }
         }
         private void Died()
         {
             currentState = dead;
-            Load(_content);
             Dead = true;
         }
     }
