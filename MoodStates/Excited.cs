@@ -6,6 +6,10 @@ namespace MoodStates
 {
     public class Excited : MoodStateBase
     {
+        public Excited()
+        {
+
+        }
         public override void Load(ContentManager content)
         {
             base.Load(content);

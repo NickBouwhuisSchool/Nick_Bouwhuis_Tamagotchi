@@ -54,29 +54,28 @@ namespace Nick_Bouwhuis_Tamagotchi
 
             tamTexture = Content.Load<Texture2D>("tamagotchi");
             creditFont = Content.Load<SpriteFont>("File");
-
+            //maakt de linker button aan
             leftButton = new Button()
             {
                 Active = true,
                 Position = new Vector2(188, 428),
                 Texture = Content.Load<Texture2D>("ButtonColor")
             };
-
+            //add event als de button geklikt wordt
             leftButton.OnClick += (sender, args) => LeftButtonPressed();
-
+            //maakt de rechter button aan
             rightButton = new Button()
             {
                 Active = true,
                 Position = new Vector2(324, 428),
                 Texture = Content.Load<Texture2D>("ButtonColor")
             };
-
+            //add event als de button geklikt wordt
             rightButton.OnClick += (sender, args) => RightButtonPressed();
-
+            //load de statemanager
             stateManager.Load(Content);
             stateManager.Attention = 50;
             stateManager.Hunger = 80;
-
             stateManager.DecreaseTimer();
             stateManager.Input("");
             // TODO: use this.Content to load your game content here
@@ -86,9 +85,10 @@ namespace Nick_Bouwhuis_Tamagotchi
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
+            //update de statemanager
             stateManager.Update(gameTime);
             // TODO: Add your update logic here
-
+            //update de buttons
             leftButton.Update(gameTime);
             rightButton.Update(gameTime);
 
@@ -102,6 +102,7 @@ namespace Nick_Bouwhuis_Tamagotchi
             // TODO: Add your drawing code here
 
             _spriteBatch.Begin();
+            //alles wordt gedrawed in de goede volgorde
             leftButton.DrawButton(_spriteBatch);
             rightButton.DrawButton(_spriteBatch);
             stateManager.Draw(gameTime, _spriteBatch);
@@ -117,6 +118,7 @@ namespace Nick_Bouwhuis_Tamagotchi
 
             base.Draw(gameTime);
         }
+        //method als de linker button wordt ingedrukt
         private void LeftButtonPressed()
         {
             if (!stateManager.Dead)
@@ -126,7 +128,8 @@ namespace Nick_Bouwhuis_Tamagotchi
             }
             if (stateManager.ExcitedActive)
             {
-
+                //start een timer van 2 seconde, als de rechter knop wordt ingedrukt tijdens deze timer wordt excited gereset
+                t = new Timer();
                 test = true;
                 t.Interval = 2000;
                 t.Elapsed += new ElapsedEventHandler(ExcitedInput);
@@ -149,6 +152,7 @@ namespace Nick_Bouwhuis_Tamagotchi
                 Console.WriteLine("niet meer excited");
             }
         }
+        //als de timer voorbij gaat wordt deze uitgevoerd zodat het niet mogelijk is dat het alsnog gereset wordt
         private void ExcitedInput(Object o, ElapsedEventArgs e)
         {
             test = false;

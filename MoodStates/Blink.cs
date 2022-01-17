@@ -9,6 +9,10 @@ namespace MoodStates
 {
     public class Blink : MoodStateBase
     {
+        public Blink()
+        {
+
+        }
         public override void Load(ContentManager content)
         {
             base.Load(content);

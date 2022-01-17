@@ -6,6 +6,10 @@ namespace MoodStates
 {
     public class Sleeping : MoodStateBase
     {
+        public Sleeping()
+        {
+
+        }
         public override void Load(ContentManager content)
         {
             base.Load(content);

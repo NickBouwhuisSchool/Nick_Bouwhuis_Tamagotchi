@@ -6,6 +6,10 @@ namespace MoodStates
 {
     public class Hungry : MoodStateBase
     {
+        public Hungry()
+        {
+
+        }
         public override void Load(ContentManager content)
         {
             base.Load(content);

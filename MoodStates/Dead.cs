@@ -6,6 +6,10 @@ namespace MoodStates
 {
     public class Dead : MoodStateBase
     {
+        public Dead()
+        {
+
+        }
         public override void Load(ContentManager content)
         {
             base.Load(content);

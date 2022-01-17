@@ -32,14 +32,23 @@ namespace Nick_Bouwhuis_Tamagotchi
         private Timer inputTimer = new Timer();
         Timer timer = new Timer();
         private bool excitedActive = false;
+        //property om te checken of de tamagochi excited is
         public bool ExcitedActive {
             get { return excitedActive; }
             set { excitedActive = value; }
         }
+        //property hoe veel de attention span is
         public int Attention { get; set; }
+        //property voor de hunger
         public int Hunger { get; set; }
+        //property om te kijken of er een button is ingeklikt
         public bool ButtonInput { get; set; }
+        //property om te kijken of de tamagotchi dood is
         public bool Dead { get; set; }
+        public CharacterStateManager()
+        {
+
+        }
 
         public void Initialize()
         {
@@ -48,6 +57,7 @@ namespace Nick_Bouwhuis_Tamagotchi
         }
         public void Load(ContentManager content)
         {
+            //alle states laden
             _content = content;
             angry.Load(content);
             blink.Load(content);
@@ -63,27 +73,31 @@ namespace Nick_Bouwhuis_Tamagotchi
         public void Update(GameTime pGameTime)
         {
             currentState.Update(pGameTime);
-
+            //checken of de tamagochi blij is, zoja gaat hij blinken
             if (currentState == happy)
                 Blink();
+            //check of er een knop ingedrukt is
             if (ButtonInput)
                 Input("");
-            //Console.WriteLine(stateAfterSleep.ToString());
+            //als de hunger hoger dan 120 is
             if(Hunger >= 120)
             {
                 Excited();
                 excitedActive = true;
             }
+            //als hij slaapt en niet excited is niks nieuws showen
             if(currentState == sleeping && !excitedActive)
             {
 
             }
             else
             {
+                //als de hunger hoger is dan 50 en niet excited is de standaard attention state doen, zo kan hij iets anders uitvoert als deze criteria niet zo is
                 if(Hunger >= 50 && !excitedActive)
                 {
                     AttentionState();
                 }
+                //als de honger lager dan 50 is de hungerstates checken
                 else if(Hunger <= 50)
                 {
                     HungerState();
@@ -94,8 +108,10 @@ namespace Nick_Bouwhuis_Tamagotchi
         }
         public void Draw(GameTime pGameTime, SpriteBatch batch)
         {
+            //de current state drawen
             currentState.Draw(pGameTime, batch);
         }
+        //deze method kan ik de states makkelijker veranderen
         public void ChangeState(string state)
         {
             switch (state)
@@ -132,7 +148,7 @@ namespace Nick_Bouwhuis_Tamagotchi
                     break;
             }
         }
-
+        //blink method, random intervals dat hij knippert voor een halve seconde
         public void Blink()
         {
             if (!Dead && !excitedActive && Hunger >= 50)
@@ -147,14 +163,16 @@ namespace Nick_Bouwhuis_Tamagotchi
                 }
             }
         }
+        //als de timer af gaat stopt hij met blinken
         public void StopBlink(object source, ElapsedEventArgs e)
         {
             currentState = happy;
         }
-
+        //als er een input is voert hij deze code uit
         public void Input(string buttonPressed)
         {
             ButtonInput = false;
+            //check of de state sleeping is
             if(currentState == sleeping)
             {
                 if (Hunger < 50)
@@ -166,6 +184,7 @@ namespace Nick_Bouwhuis_Tamagotchi
                 currentState = stateAfterSleep;
             }
             inputTimer.Stop();
+            //timer die na 20 seconde af gaat en dan ervoor zorgt dat de tamagochi gaat slapen
             inputTimer.Interval = 20000;
             inputTimer.Elapsed += new ElapsedEventHandler(Sleep);
             inputTimer.Enabled = true;
@@ -184,6 +203,7 @@ namespace Nick_Bouwhuis_Tamagotchi
                     Hunger += 10;
             }
         }
+        //method die wordt aangeroepen als de timer af gaat
         private void Sleep(Object o, ElapsedEventArgs e)
         {
             if (!Dead && !excitedActive && Hunger >= 50)
@@ -193,6 +213,7 @@ namespace Nick_Bouwhuis_Tamagotchi
                 ChangeState("Sleeping");
             }
         }
+        //timer die constant aangeroepen wordt om de 5 seconde zodat er hunger en attention af gaat
         public void DecreaseTimer()
         {
             timer.Stop();
@@ -200,6 +221,7 @@ namespace Nick_Bouwhuis_Tamagotchi
             timer.Elapsed += new ElapsedEventHandler(DecreaseTimerElapsed);
             timer.Enabled = true;
         }
+        //code die wordt uitgevoerd als de timer af gaat
         private void DecreaseTimerElapsed(object o, ElapsedEventArgs e)
         {
             Hunger -= 5;
@@ -211,6 +233,7 @@ namespace Nick_Bouwhuis_Tamagotchi
             else
             AttentionState();
         }
+        //kijken welke attentionstate hij moet uitvoeren
         private void AttentionState()
         {
             if (currentState == sleeping)
@@ -247,6 +270,7 @@ namespace Nick_Bouwhuis_Tamagotchi
                 }
             }
         }
+        //kijken welke hungerstate er uitgevoerd moet worden
         private void HungerState()
         {
             if (Hunger < 50 && Hunger >= 40)
@@ -266,15 +290,18 @@ namespace Nick_Bouwhuis_Tamagotchi
                 Died();
             }
         }
+        //kan worden aangeroepen worden als de tamagochi dood moet gaan
         private void Died()
         {
             currentState = dead;
             Dead = true;
         }
+        //wordt uitgevoerd als de hunger boven de 120 is
         private void Excited()
         {
             ChangeState("Excited");
             Timer t = new Timer();
+            //timer die af gaat na 30 seconde
             t.Interval = 30000;
             t.Elapsed += new ElapsedEventHandler(ExcitedTimerElapsed);
             t.Enabled = true;
@@ -283,15 +310,18 @@ namespace Nick_Bouwhuis_Tamagotchi
         private void ExcitedTimerElapsed(Object o, ElapsedEventArgs e)
         {
             Timer t = new Timer();
+            //timer die af gaat na 10 seconde en dan gaat de tamagochi dood
             t.Interval = 10000;
-            t.Elapsed += new ElapsedEventHandler(ExcitedDead);
+            t.Elapsed += ExcitedDead;
             t.Enabled = true;
             Console.WriteLine("test2");
         }
+        //wordt uitgevoerd door de timer hierboven
         private void ExcitedDead(Object o, ElapsedEventArgs e)
         {
             Died();
         }
+        //reset excited als er een goede button combination wordt uitgevoerd
         public void ExcitedReset()
         {
             Hunger = 110;

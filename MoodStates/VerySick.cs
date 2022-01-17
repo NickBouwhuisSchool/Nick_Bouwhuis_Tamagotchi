@@ -6,6 +6,10 @@ namespace MoodStates
 {
     public class VerySick : MoodStateBase
     {
+        public VerySick()
+        {
+
+        }
         public override void Load(ContentManager content)
         {
             base.Load(content);
