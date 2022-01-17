@@ -31,7 +31,11 @@ namespace Nick_Bouwhuis_Tamagotchi
         private SpriteFont font;
         private Timer inputTimer = new Timer();
         Timer timer = new Timer();
-
+        private bool excitedActive = false;
+        public bool ExcitedActive {
+            get { return excitedActive; }
+            set { excitedActive = value; }
+        }
         public int Attention { get; set; }
         public int Hunger { get; set; }
         public bool ButtonInput { get; set; }
@@ -64,7 +68,27 @@ namespace Nick_Bouwhuis_Tamagotchi
                 Blink();
             if (ButtonInput)
                 Input("");
-            Console.WriteLine(stateAfterSleep.ToString());
+            //Console.WriteLine(stateAfterSleep.ToString());
+            if(Hunger >= 120)
+            {
+                Excited();
+                excitedActive = true;
+            }
+            if(currentState == sleeping && !excitedActive)
+            {
+
+            }
+            else
+            {
+                if(Hunger >= 50 && !excitedActive)
+                {
+                    AttentionState();
+                }
+                else if(Hunger <= 50)
+                {
+                    HungerState();
+                }
+            }
 
 
         }
@@ -111,7 +135,7 @@ namespace Nick_Bouwhuis_Tamagotchi
 
         public void Blink()
         {
-            if (!Dead)
+            if (!Dead && !excitedActive && Hunger >= 50)
             {
                 int randomInterval = rand.Next(100);
                 if (randomInterval > 97)
@@ -152,7 +176,7 @@ namespace Nick_Bouwhuis_Tamagotchi
             }
             else if(buttonPressed == "Right")
             {
-                if (Hunger < 100 && currentState == angry)
+                if (Hunger < 100 && currentState == angry || stateAfterSleep == angry)
                 {
 
                 }
@@ -162,15 +186,13 @@ namespace Nick_Bouwhuis_Tamagotchi
         }
         private void Sleep(Object o, ElapsedEventArgs e)
         {
-            if (!Dead)
+            if (!Dead && !excitedActive && Hunger >= 50)
             {
                 t.Stop();
-                t.Dispose();
                 ChangeState("Happy");
                 ChangeState("Sleeping");
             }
         }
-
         public void DecreaseTimer()
         {
             timer.Stop();
@@ -181,7 +203,7 @@ namespace Nick_Bouwhuis_Tamagotchi
         private void DecreaseTimerElapsed(object o, ElapsedEventArgs e)
         {
             Hunger -= 5;
-            Attention -= 0;
+            Attention -= 5;
             if(Hunger < 50)
             {
                 HungerState();
@@ -248,6 +270,32 @@ namespace Nick_Bouwhuis_Tamagotchi
         {
             currentState = dead;
             Dead = true;
+        }
+        private void Excited()
+        {
+            ChangeState("Excited");
+            Timer t = new Timer();
+            t.Interval = 30000;
+            t.Elapsed += new ElapsedEventHandler(ExcitedTimerElapsed);
+            t.Enabled = true;
+            Console.WriteLine("test1");
+        }
+        private void ExcitedTimerElapsed(Object o, ElapsedEventArgs e)
+        {
+            Timer t = new Timer();
+            t.Interval = 10000;
+            t.Elapsed += new ElapsedEventHandler(ExcitedDead);
+            t.Enabled = true;
+            Console.WriteLine("test2");
+        }
+        private void ExcitedDead(Object o, ElapsedEventArgs e)
+        {
+            Died();
+        }
+        public void ExcitedReset()
+        {
+            Hunger = 110;
+            excitedActive = false;
         }
     }
 }

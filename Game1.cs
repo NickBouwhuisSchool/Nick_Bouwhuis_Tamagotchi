@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
 using DiscoFramework;
+using System.Timers;
 
 namespace Nick_Bouwhuis_Tamagotchi
 {
@@ -17,6 +18,10 @@ namespace Nick_Bouwhuis_Tamagotchi
 
         private Button leftButton;
         private Button rightButton;
+
+        Timer t = new Timer();
+
+        private bool test = false;
 
         public Game1()
         {
@@ -102,9 +107,9 @@ namespace Nick_Bouwhuis_Tamagotchi
             stateManager.Draw(gameTime, _spriteBatch);
 
             _spriteBatch.Draw(tamTexture, Vector2.Zero, Color.White);
-            //_spriteBatch.DrawString(creditFont, "Icon made by Webalys,\n https://www.flaticon.com/authors/webalys", Vector2.Zero, Color.White);
-            _spriteBatch.DrawString(creditFont, stateManager.Attention.ToString(), Vector2.Zero, Color.White);
-            _spriteBatch.DrawString(creditFont, stateManager.Hunger.ToString(), new Vector2(480, 0), Color.White);
+            _spriteBatch.DrawString(creditFont, "Icon made by Webalys,\nhttps://www.flaticon.com/authors/webalys", new Vector2(0,460), Color.White);
+            _spriteBatch.DrawString(creditFont, "Attention: " + stateManager.Attention.ToString(), Vector2.Zero, Color.White);
+            _spriteBatch.DrawString(creditFont, "Hunger: " + stateManager.Hunger.ToString(), new Vector2(400, 0), Color.White);
 
 
             _spriteBatch.End();
@@ -119,6 +124,14 @@ namespace Nick_Bouwhuis_Tamagotchi
                 stateManager.ButtonInput = true;
                 stateManager.Input("Left");
             }
+            if (stateManager.ExcitedActive)
+            {
+
+                test = true;
+                t.Interval = 2000;
+                t.Elapsed += new ElapsedEventHandler(ExcitedInput);
+                t.Enabled = true;
+            }
         }
         private void RightButtonPressed()
         {
@@ -127,6 +140,20 @@ namespace Nick_Bouwhuis_Tamagotchi
                 stateManager.ButtonInput = true;
                 stateManager.Input("Right");
             }
+            if (test)
+            {
+                stateManager.ExcitedReset();
+                test = false;
+                t.Stop();
+                t.Dispose();
+                Console.WriteLine("niet meer excited");
+            }
+        }
+        private void ExcitedInput(Object o, ElapsedEventArgs e)
+        {
+            test = false;
+            t.Stop();
+            t.Dispose();
         }
     }
 }
